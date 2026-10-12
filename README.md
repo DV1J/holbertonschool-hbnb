@@ -1,0 +1,1 @@
+(HBnB project) - placeholder
