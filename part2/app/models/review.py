@@ -20,6 +20,6 @@ class review(BaseModel):
         if not isinstance (place, Place):
             raise ValueError("place must be a place instance")
         if not isinstance (user, User):
-            raise ValueError("place must be a place instance")
+            raise ValueError("user must be a user instance")
         
         
