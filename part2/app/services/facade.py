@@ -7,18 +7,22 @@ class HBnBFacade:
         self.review_repo = InMemoryRepository()
         self.amenity_repo = InMemoryRepository()
 
-    # Placeholder method for creating a user
+    # method for creating a user
     def create_user(self, user_data):
         user = User(**user_data)
         self.user_repo.add(user)
         return user
 
-    def update_user(self, user_data):
-        user = User(**user_data)
-        
-
+    #
     def get_user(self, user_id):
         return self.user_repo.get(user_id)
+
+    def update_user(self, user_id, user_data):
+        user = self.user_repo.get(user_id)
+        if not user:
+            return None
+        self.user_repo.update(user_id, user_data)
+        return user
 
     def get_all_users(self):
         return self.user_repo.get_all()
