@@ -23,5 +23,4 @@ class User(BaseModel):
             raise ValueError ("too long")
 
         if email == None:
-            raise TypeError ("email is empty")        
-        
+            raise TypeError ("email is empty")
