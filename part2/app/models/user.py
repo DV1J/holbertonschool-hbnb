@@ -22,5 +22,11 @@ class User(BaseModel):
         if len(last_name) > 50:
             raise ValueError ("too long")
 
+        email == ("enter your email")
+        if "@" in email and "." in email:
+            print ("valid email")
+        else:
+            print ("invalid email")
+
         if email == None:
             raise TypeError ("email is empty")
