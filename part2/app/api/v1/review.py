@@ -30,13 +30,13 @@ class ReviewList(Resource):
             review_list.append({'ratings': review.ratings, 'texting': review.texting, 'place_id': review.place_id, 'user_id': review.user_id})
             return review_list, 200
         
-        @api.route('/<review_id>')
-        class ReviewResource(Resource):
-            @api.response(200, 'Review details retrieved successfully')
-            @api.response(404, 'Review not found')
-            def get(self, review_id):
-                """Get review details by ID"""
-                review = facade.get_review(review_id)
+@api.route('/<review_id>')
+class ReviewResource(Resource):
+    @api.response(200, 'Review details retrieved successfully')
+    @api.response(404, 'Review not found')
+    def get(self, review_id):
+        """Get review details by ID"""
+        review = facade.get_review(review_id)
         if not review:
             return ('review not found'), 404
         return {'ratings': review.ratings, 'texting': review.texting, 'place_id': review.place_id, 'user_id': review.user_id},200
