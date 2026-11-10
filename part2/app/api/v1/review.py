@@ -18,6 +18,9 @@ class ReviewList(Resource):
     def post(self):
         """Register a new review"""
         review_data = api.payload
-        new_place = facade.create_review(review_data)
-        return {}
+        new_review = facade.create_review(review_data)
+        return {'ratings': new_review.ratings, 'texting': new_review.texting, 'place': new_review.place, 'user': new_review.user},201
+    
+    
+    
 

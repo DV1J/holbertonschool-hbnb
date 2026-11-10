@@ -70,4 +70,3 @@ class PlaceResource(Resource):
         if not place:
             return ('Place not found'), 404
         return {'title': place.title, 'description': place.description, 'price': place.price, 'latitude': place.latitude, 'longitude': place.longitude, 'owner_id': place.owner_id, 'amentites': place.amentities}, 200
-    
