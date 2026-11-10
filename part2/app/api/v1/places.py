@@ -47,15 +47,15 @@ class PlaceList(Resource):
         place_data = api.payload
         
         new_place = facade.create_place(place_data)
-        return {'title': new_place.title, 'description': new_place.description, 'price': new_place.price, 'latitude': new_place.latitude, 'longitude': new_place.longitude, 'owner_id': new_place.owner_id, 'amentites': new_place.amenities}, 201
+        return {'title': new_place.title, 'description': new_place.description, 'price': new_place.price, 'latitude': new_place.latitude, 'longitude': new_place.longitude, 'owner_id': new_place.owner.id, 'amenities': new_place.amenities}, 201
 
     @api.response(200, 'List of places retrieved successfully')
     def get(self):
         """Retrieve a list of all places"""
         places = facade.get_all_places()
         place_list = []
-        for place in place:
-            place_list.append({'title': place.title, 'description': place.description, 'price': place.price, 'latitude': place.latitude, 'longitude': place.longitude, 'owner_id': place.owner_id, 'amentites': place.amentities})
+        for place in places:
+            place_list.append({'title': place.title, 'description': place.description, 'price': place.price, 'latitude': place.latitude, 'longitude': place.longitude, 'owner_id': place.owner.id, 'amenities': place.amenities})
         return place_list, 200
 
 @api.route('/<place_id>')
@@ -67,7 +67,7 @@ class PlaceResource(Resource):
         place = facade.get_place(place_id)
         if not place:
             return ('Place not found'), 404
-        return {'title': place.title, 'description': place.description, 'price': place.price, 'latitude': place.latitude, 'longitude': place.longitude, 'owner_id': place.owner_id, 'amentites': place.amentities}, 200
+        return {'title': place.title, 'description': place.description, 'price': place.price, 'latitude': place.latitude, 'longitude': place.longitude, 'owner_id': place.owner.id, 'amenities': place.amenities}, 200
 
     @api.expect(place_model)
     @api.response(200, 'Place updated successfully')
@@ -79,7 +79,7 @@ class PlaceResource(Resource):
         place = facade.update_place(place_id, place_data)
         if not place:
             return ('Place not found'), 404
-        return {'title': place.title, 'description': place.description, 'price': place.price, 'latitude': place.latitude, 'longitude': place.longitude, 'owner_id': place.owner_id, 'amentites': place.amentities}, 200
+        return {'title': place.title, 'description': place.description, 'price': place.price, 'latitude': place.latitude, 'longitude': place.longitude, 'owner_id': place.owner.id, 'amenities': place.amenities}, 200
 
 @api.route('/<place_id>/reviews')
 class PlaceReviewList(Resource):

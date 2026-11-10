@@ -1,7 +1,7 @@
 #!/bin/usr/python3
 
 from app.models.base_model import BaseModel
-from app.models import user
+from app.models.user import User
 
 class Place(BaseModel):
    def __init__(self, title, description, price, latitude, longitude, owner):
@@ -38,9 +38,15 @@ class Place(BaseModel):
       
       if  not -180 <= longitude <= 180:
          raise ValueError("must be between -180 and 180")
+   @property
+   def owner(self):
+      return self._owner
 
-      if not isinstance(owner, user.User):
+   @owner.setter
+   def owner(self, value):
+      if not isinstance(value, User):
          raise ValueError("Owner must be in the User instance")
+      self._owner = value
 
    def add_amenity(self, amenity):
       """Add an amenity to the place."""
