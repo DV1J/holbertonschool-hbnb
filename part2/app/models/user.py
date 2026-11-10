@@ -9,6 +9,7 @@ class User(BaseModel):
         self.last_name = last_name
         self.email = email
         self.is_admin = is_admin
+        self.places = [] # store places related to user
 
         if (first_name) == None:
             raise ValueError ("empty")
@@ -30,3 +31,6 @@ class User(BaseModel):
 
         if email == None:
             raise TypeError ("email is empty")
+    def add_place (self, place):
+        """Add place to user"""
+        self.places.append(place)
