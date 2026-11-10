@@ -42,9 +42,9 @@ class PlaceList(Resource):
     @api.response(200, 'List of places retrieved successfully')
     def get(self):
         """Retrieve a list of all places"""
-        place = facade.get_all_places()
+        places = facade.get_all_places()
         place_list = []
-        for num in place:
+        for place in place:
             place_list.append({'title': place.title, 'description': place.description, 'price': place.price, 'latitude': place.latitude, 'longitude': place.longitude, 'owner_id': place.owner_id, 'amentites': place.amentities})
         return place_list, 200
 
