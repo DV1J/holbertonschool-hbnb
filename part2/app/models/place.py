@@ -53,4 +53,4 @@ class Place(BaseModel):
       self.amenities.append(amenity)
    def add_review(self, review):
       """add an review to the place """
-      self.amenities.append(review)
+      self.reviews.append(review)
